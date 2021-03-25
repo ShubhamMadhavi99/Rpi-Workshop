@@ -23,6 +23,9 @@ void loop()
   if(Serial.available())        // If incoming data is available
   {
     input = Serial.readString();  // Read the incoming data and store
-    Serial.println("Received: "+input);             // Reply to Raspberry Pi
+    if (input=="Password?\n")     // If Raspberry Pi requests for Password
+    {
+      Serial.println("Hello\n");  // Reply with Password
+    }
   }
-}
+}//end of loop
