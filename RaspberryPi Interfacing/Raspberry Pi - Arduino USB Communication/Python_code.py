@@ -1,19 +1,29 @@
 import pyMultiSerial
+import time
 
-p = pyMultiSerial.pyMultiSerial()
+p = pyMultiSerial.MultiSerial()
 
 
 def authenticate_device(portno,serial):
-    
-    pass
+    print ("Port Found: "+portno)
+    time.sleep(1.5)
+    serial.write(b"Hello\n")
+    y = serial.readline()
+    print(y)
+    if y==b"Hello\n":
+        print("Port Accepted")
+        return True
+    else:
+        print("Port rejected")
+        return False    
+
 
 #Register Callback - authenticate_device will be called whenever a new USB device is found.
 p.port_connection_found_callback = authenticate_device
 
 
 def handle_input(portno,serial,text):
-    
-    pass
+    print ("Received '"+text+"' from port "+portno)
 
 #Register Callback - handle_input will be called whenever data is received from USB device
 p.port_read_callback = handle_input
