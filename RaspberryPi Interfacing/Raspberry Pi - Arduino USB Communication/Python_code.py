@@ -1,5 +1,3 @@
-
-
 import pyMultiSerial
 
 p = pyMultiSerial.pyMultiSerial()
