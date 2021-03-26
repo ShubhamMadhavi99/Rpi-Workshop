@@ -7,7 +7,7 @@ p = pyMultiSerial.MultiSerial()
 def authenticate_device(portno,serial):
     print ("Port Found: "+portno)
     time.sleep(1.5)
-    serial.write(b"Hello\n")
+    serial.write(b"Password?\n")
     y = serial.readline()
     print(y)
     if y==b"Hello\n":
