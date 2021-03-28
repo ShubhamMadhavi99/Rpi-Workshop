@@ -1,0 +1,118 @@
+import cv2
+import numpy as np
+import time
+#To install open cv : "pip install opencv-python"
+
+#Basics
+"""
+img=cv2.imread('cameraman.jpg',0)
+
+print(type(img))
+print(img.shape)
+print(img.ndim)
+print(img)
+# #
+cv2.imwrite('F:\Python\Copy_Cameraman.png',img)
+# #
+cv2.imshow('Cameraman',img)
+
+cv2.waitKey(0)
+cv2.destroyAllWindows()
+"""
+
+#Common Operations in Image Processing
+"""
+# # img=cv2.imread('galaxy.jpg',1)
+# # cv2.imshow('Original Image',img)
+# 
+# # #Resizing Images
+# # print(img.shape)
+# # resized_img=cv2.resize(img,(int((img.shape[1]/2)),int(img.shape[0]/2)))
+# # print(resized_img.shape)
+# # cv2.imshow('Resized Image',resized_img)
+# # cv2.imwrite('Resized_Galaxy_Image.png',resized_img)
+# 
+# #Splitting image into channels
+# # img1=cv2.imread('bgr.jpg',1)
+# # cv2.imshow('Original Image',img1)
+# #
+# # img1[:,:,0]=img1[:,:,1]=0 #BGR format
+# # cv2.imshow('Red Channel',img1)
+# 
+# # #Rotating an Image
+# img2=cv2.imread('cameraman.jpg',0)
+# cv2.imshow('Cameraman',img2)
+# 
+# # rotated_img=cv2.rotate(img2,cv2.ROTATE_180)
+# # cv2.imshow('Rotated',rotated_img)
+# #
+# # # Negative of an Image
+# img_neg=255-img2
+# cv2.imshow('Negative',img_neg)
+# 
+# cv2.waitKey(0)
+# cv2.destroyAllWindows()
+"""
+
+#Operations on Pixel-level
+"""
+img=cv2.imread('cameraman.jpg',0)
+cv2.imshow('Cameraman',img)
+img_flip=np.zeros(img.shape,dtype='uint8')
+
+for i in range(img.shape[0]):
+    for j in range(img.shape[1]):
+        img_flip[i,j]=(img[img.shape[0]-i-1,img.shape[1]-j-1])
+
+cv2.imshow('Flipped',img_flip)
+cv2.waitKey(0)
+cv2.destroyAllWindows()
+"""
+
+#Object Detection
+"""
+face_cascade=cv2.CascadeClassifier('haarcascade_frontalface_default.xml')
+img=cv2.imread('face.jpg')
+cv2.imshow('Color Image',img)
+
+gray_img=cv2.cvtColor(img,cv2.COLOR_BGR2GRAY)
+#cv2.imshow('Grayscale',gray_img)
+
+faces=face_cascade.detectMultiScale(gray_img,scaleFactor=1.07,minNeighbors=5)
+print(faces)
+
+#cv2.imshow("Face",img[faces[0,1]:(faces[0,3]+faces[0,1]),faces[0,0]:(faces[0,0]+faces[0,2])])
+for x,y,w,h in faces:
+    detected_img=cv2.rectangle(img,(x,y),(x+w,y+h),(0,255,0),thickness=2)
+cv2.imshow('Face Detected',detected_img)
+
+cv2.waitKey(0)
+cv2.destroyAllWindows()
+"""
+
+#Video
+
+video=cv2.VideoCapture(0, cv2.CAP_DSHOW)
+face_cascade=cv2.CascadeClassifier('haarcascade_frontalface_default.xml')
+#
+#video=cv2.VideoCapture(0)
+a=0
+while True:
+    a+=1
+    check,frame=video.read()
+    #time.sleep(5)
+    # frame_gray=cv2.cvtColor(frame,cv2.COLOR_BGR2GRAY)
+    # faces = face_cascade.detectMultiScale(frame_gray, scaleFactor=1.05, minNeighbors=5)
+    # det_img=frame
+    # for x, y, w, h in faces:
+    #     det_img = cv2.rectangle(frame, (x, y), (x + w, y + h), (0, 255, 0), thickness=2)
+    det_img=cv2.Canny(frame,100,200)
+    cv2.imshow('Webcam',det_img)
+    key=cv2.waitKey(10)
+
+    if key==ord('q'):
+        break
+
+video.release()
+print('No. of Frames captured= ',a)
+cv2.destroyAllWindows()
