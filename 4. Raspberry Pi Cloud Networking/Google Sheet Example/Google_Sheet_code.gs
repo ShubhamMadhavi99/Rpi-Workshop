@@ -1,6 +1,8 @@
 //Google sheet id : [Enter your sheet id here]
 //Current url : [Enter URL here]
-//Sample url : [Enter URL here with sample parameters]
+//Sample url to send data: [Enter URL here]?value=2
+//Sample url to read data: [Enter URL here]?get=0
+//Sample url to read a specific row: [Enter URL here]?get=4 // read row no = 4
 
 //-----------------------------------------------
 
