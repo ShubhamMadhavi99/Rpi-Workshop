@@ -52,7 +52,7 @@ function doGet(e){
               data = sheet.getDataRange().getValues();
               for (var i = 1; i < data.length; i++) 
               {
-                result+=data[i][0]+","+data[i][1]+","+data[i][2]+","+data[i][3]+";";
+                result+=data[i][0]+","+data[i][1]+"<br>";
               }//end of for
               return ContentService.createTextOutput(result);
             }
@@ -60,7 +60,7 @@ function doGet(e){
             {                                                              // Output a particular row number = value
               data = sheet.getDataRange().getValues();
               i=value;
-              result=data[i][0]+","+data[i][1]+","+data[i][2]+","+data[i][3];
+              result=data[i][0]+","+data[i][1]+"<br>";
               return ContentService.createTextOutput(result);
             }
             break;
