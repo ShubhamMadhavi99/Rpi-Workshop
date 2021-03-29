@@ -41,7 +41,7 @@ function doGet(e){
             rowData[1]=value;                                              // Sensor Value in column B
             var newRange = sheet.getRange(newRow, 1, 1, rowData.length);   // Select last row of sheet
             newRange.setValues([rowData]);                                 // Set values in last row
-            result += "Written on column Roll No";                         // Response Text (Optional)
+            result += "Written on column Value";                         // Response Text (Optional)
             return ContentService.createTextOutput(result);
             break;       
           
