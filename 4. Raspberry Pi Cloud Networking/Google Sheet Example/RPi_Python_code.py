@@ -1,4 +1,5 @@
 from pyMultiSerial import pyMultiSerial
+# Install pyMultiSerial: pip3 install --index-url https://test.pypi.org/simple/ --no-deps pyMultiSerial==1.0.3
 import time
 import requests
 
