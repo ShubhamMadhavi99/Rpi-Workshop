@@ -1,3 +1,7 @@
+Install pyMultiSerial Python Package
+```
+pip3 install --index-url https://test.pypi.org/simple/ --no-deps pyMultiSerial==1.0.3
+```
 
 # Examples
 There are two examples in this folder:
